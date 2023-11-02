@@ -1,0 +1,61 @@
+version: '3'
+#networks:
+#    default:
+#       external:
+#          name: condition
+services:
+  assets-condition-index:
+    image: dev.exactspace.co/rotary-assets-condition-es:r1
+    volumes:
+    - /space/log:/tmp/log
+    extra_hosts:
+    - "api-es:10.0.0.14"
+    - "vml-2:10.0.0.9"
+    environment:
+    - BROKER_ADDRESS=10.0.0.5
+    - REDIS_ADDRESS=10.0.0.9
+    - SERVICE_NAME=rotary-assets-condition-index
+    - SERVICE_FILE_NAME=index.py
+    - PORT=10388
+    ports:
+    - 10388:10388
+
+  assets-condition-loopbackUpdateRawData:
+    image: dev.exactspace.co/rotary-assets-condition-es:r1
+    volumes:
+    - /space/log:/tmp/log
+    extra_hosts:
+    - "api-es:10.0.0.14"
+    - "vml-2:10.0.0.9"
+    environment:
+    - BROKER_ADDRESS=10.0.0.5
+    - REDIS_ADDRESS=10.0.0.9
+    - SERVICE_NAME=rotary-assets-condition-loopbackUpdateRawData
+    - SERVICE_FILE_NAME=loopbackUpdateRawData.py
+
+  assets-condition-tagmetapostingscript:
+    image: dev.exactspace.co/rotary-assets-condition-es:r1
+    volumes:
+    - /space/log:/tmp/log
+    extra_hosts:
+    - "api-es:10.0.0.14"
+    - "vml-2:10.0.0.9"
+    environment:
+    - BROKER_ADDRESS=10.0.0.5
+    - REDIS_ADDRESS=10.0.0.9
+    - SERVICE_NAME=rotary-assets-condition-tagmetapostingscript
+    - SERVICE_FILE_NAME=tagmetapostingscript.py
+
+  assets-condition-deviationStatus:
+    image: dev.exactspace.co/rotary-assets-condition-es:r1
+    volumes:
+    - /space/log:/tmp/log
+    extra_hosts:
+    - "api-es:10.0.0.14"
+    - "vml-2:10.0.0.9"
+    environment:
+    - BROKER_ADDRESS=10.0.0.5
+    - REDIS_ADDRESS=10.0.0.9
+    - SERVICE_NAME=rotary-assets-condition-deviationStatus
+    - SERVICE_FILE_NAME=deviationStatus.py
+
